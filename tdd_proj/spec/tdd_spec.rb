@@ -64,6 +64,75 @@ describe "Array" do
     end
   end
 
-
-
 end
+
+
+describe "Stock Picker" do
+
+  let(:prices) {[20, 12, 31, 8, 18]}
+
+  it "should raise an error on empty prices array" do
+    expect{stock_picker([])}.to raise_error "Needs moar prices"
+  end
+
+  it "should return emoty array when no profit possible" do
+    expect(stock_picker([10,9,8])).to eq([])
+  end
+
+  it "should gives correct buy sell dates" do
+    expect(stock_picker(prices)).to eq([1, 2])
+  end
+end
+
+describe "Towers of Hanoi" do
+
+  let(:hanoi) { Hanoi.new }
+
+  context "Raise Argument Error when needed" do
+    it "should raise an error on move to and from the same place" do
+      expect {hanoi.move(0,0)}.to raise_error(ArgumentError)
+    end
+
+    it "should raise an error on out of bounds" do
+      expect {hanoi.move(15,0)}.to raise_error(ArgumentError)
+    end
+  end
+
+  context "Move" do
+    it "should reject an invalid move" do
+      expect(hanoi.move(1,2)).to eq(false)
+      expect(hanoi.towers).to eq([[3,2,1], [], []])
+    end
+
+    it "should effect a valid move" do
+      expect(hanoi.move(0,1)).to eq(true)
+      expect(hanoi.towers).to eq([[3,2], [1], []])
+    end
+  end
+
+  context "Winning" do
+
+    it "should return false if not won" do
+      expect(hanoi.won?).to eq(false)
+    end
+
+    it "should return true if won" do
+      hanoi.towers = [[], [], [3,2,1]]
+      expect(hanoi.won?).to eq(true)
+    end
+  end
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+#a
