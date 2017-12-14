@@ -23,6 +23,41 @@ end
 
 
 describe "Deck" do
-  
+  let(:deck) { Deck.new }
+
+  describe "#empty?" do
+    it "empty? should return false on a fresh deck" do
+      expect(deck.empty?).to eq(false)
+    end
+
+    it "empty? should return true on an empty deck" do
+      52.times do
+        deck.provide_card
+      end
+      expect(deck.empty?).to eq(true)
+    end
+  end
+
+  describe "#initialize" do
+
+    it "should populate the deck with 52 cards" do
+      expect(deck.size).to be(52)
+    end
+
+    it "should have the right cards" do
+      class Deck
+        attr_reader :cards
+      end
+      expect(deck.cards.select {|card| card.value == 8}.length).to eq(4)
+      expect(deck.cards.select {|card| card.suit == :clubs}.length).to eq(13)
+    end
+  end
+
+  describe "#provide_card" do
+    it "should give us back a card" do
+      expect(deck.provide_card).to be_an_instance_of(Card)
+      expect(deck.size).to be(51)
+    end
+  end
 
 end
