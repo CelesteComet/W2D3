@@ -17,7 +17,7 @@ describe "Card" do
   end
 
   it "raises argument error on bad suit" do
-    expect { Card.new(7, :spadepp)}.to raise_error(ArgumentError)
+    expect { Card.new(7, :spadepp) }.to raise_error(ArgumentError)
   end
 end
 
@@ -48,8 +48,8 @@ describe "Deck" do
       class Deck
         attr_reader :cards
       end
-      expect(deck.cards.select {|card| card.value == 8}.length).to eq(4)
-      expect(deck.cards.select {|card| card.suit == :clubs}.length).to eq(13)
+      expect(deck.cards.select { |card| card.value == 8 }.length).to eq(4)
+      expect(deck.cards.select { |card| card.suit == :clubs }.length).to eq(13)
     end
   end
 
